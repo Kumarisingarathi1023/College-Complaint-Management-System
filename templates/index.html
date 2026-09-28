@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Complaint Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>College Complaint Management System</h1>
+
+    <p>
+        Submit and track your college complaints easily.
+    </p>
+
+    <div class="buttons">
+
+        <a href="{{ url_for('register') }}" class="button">
+            Student Registration
+        </a>
+
+        <a href="{{ url_for('login') }}" class="button">
+            Login
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

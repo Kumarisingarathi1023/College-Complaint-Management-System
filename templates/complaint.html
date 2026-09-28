@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Complaint</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h2>Submit Complaint</h2>
+
+    <form method="POST">
+
+        <label>Complaint Category</label>
+
+        <select name="category" required>
+
+            <option value="">Select Category</option>
+
+            <option value="Hostel">
+                Hostel
+            </option>
+
+            <option value="Academic">
+                Academic
+            </option>
+
+            <option value="Transport">
+                Transport
+            </option>
+
+            <option value="Library">
+                Library
+            </option>
+
+            <option value="Infrastructure">
+                Infrastructure
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+        <label>Complaint Title</label>
+
+        <input
+            type="text"
+            name="title"
+            required
+        >
+
+        <label>Description</label>
+
+        <textarea
+            name="description"
+            rows="6"
+            required
+        ></textarea>
+
+        <button type="submit">
+            Submit Complaint
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{{ url_for('student_dashboard') }}">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

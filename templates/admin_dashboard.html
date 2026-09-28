@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+
+        <h2>Admin Dashboard</h2>
+
+        <a href="{{ url_for('logout') }}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+    <h3>All Complaints</h3>
+
+    <form method="GET" class="search-form">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by student, category, title or status"
+            value="{{ search }}"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    {% if complaints %}
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Student</th>
+            <th>Email</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Update</th>
+        </tr>
+
+        {% for complaint in complaints %}
+
+        <tr>
+
+            <td>{{ complaint["id"] }}</td>
+
+            <td>{{ complaint["name"] }}</td>
+
+            <td>{{ complaint["email"] }}</td>
+
+            <td>{{ complaint["category"] }}</td>
+
+            <td>{{ complaint["title"] }}</td>
+
+            <td>{{ complaint["description"] }}</td>
+
+            <td>{{ complaint["status"] }}</td>
+
+            <td>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('update_status', complaint_id=complaint['id']) }}"
+                >
+
+                    <select name="status">
+
+                        <option
+                            value="Pending"
+                            {% if complaint["status"] == "Pending" %}
+                            selected
+                            {% endif %}
+                        >
+                            Pending
+                        </option>
+
+                        <option
+                            value="In Progress"
+                            {% if complaint["status"] == "In Progress" %}
+                            selected
+                            {% endif %}
+                        >
+                            In Progress
+                        </option>
+
+                        <option
+                            value="Resolved"
+                            {% if complaint["status"] == "Resolved" %}
+                            selected
+                            {% endif %}
+                        >
+                            Resolved
+                        </option>
+
+                    </select>
+
+                    <button type="submit">
+                        Update
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No complaints found.</p>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

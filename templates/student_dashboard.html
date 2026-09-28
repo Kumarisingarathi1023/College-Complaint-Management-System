@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+
+        <h2>Welcome, {{ student_name }}</h2>
+
+        <a href="{{ url_for('logout') }}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+    <a href="{{ url_for('complaint') }}" class="button">
+        Submit New Complaint
+    </a>
+
+    <h2>My Complaints</h2>
+
+    {% if complaints %}
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+
+        {% for complaint in complaints %}
+
+        <tr>
+
+            <td>{{ complaint["id"] }}</td>
+
+            <td>{{ complaint["category"] }}</td>
+
+            <td>{{ complaint["title"] }}</td>
+
+            <td>{{ complaint["description"] }}</td>
+
+            <td>
+                <span class="status">
+                    {{ complaint["status"] }}
+                </span>
+            </td>
+
+            <td>{{ complaint["created_at"] }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No complaints submitted yet.</p>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

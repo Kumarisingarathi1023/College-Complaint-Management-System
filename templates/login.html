@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h2>Login</h2>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <p>
+        New student?
+        <a href="{{ url_for('register') }}">
+            Register here
+        </a>
+    </p>
+
+    <hr>
+
+    <p>
+        <strong>Admin Login</strong>
+    </p>
+
+    <p>Email: admin@college.com</p>
+    <p>Password: admin123</p>
+
+</div>
+
+</body>
+</html>
